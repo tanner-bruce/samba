@@ -57,8 +57,8 @@ action :add do
       variables[:shares][new_resource.share_name]['force group'] = new_resource.force_group
       variables[:shares][new_resource.share_name]['browseable'] = new_resource.browseable
 
-      action :nothing
-      delayed_action :create
+      action :create
+      notifies :create, new_resource, :immediate
     end
   end
 

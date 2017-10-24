@@ -88,11 +88,10 @@ action :create do
         log_level: new_resource.log_level
       )
       samba_services.each do |samba_service|
-        notifies :restart, "service[#{samba_service}]"
+        notifies :restart, "service[#{samba_service}]", :immediate
       end
 
-      action :nothing
-      delayed_action :create
+      action :create
     end
 
     samba_services.each do |s|
